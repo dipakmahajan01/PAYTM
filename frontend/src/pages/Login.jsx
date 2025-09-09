@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+import { useState } from 'react';
 import { BottomWarning } from '../components/BottomWarning';
 import { Button } from '../components/Button';
 import { Heading } from '../components/Heading';
@@ -5,6 +7,8 @@ import { InputBox } from '../components/InputBox';
 import { SubHeading } from '../components/SubHeading';
 
 export const Login = () => {
+     const [Email,setEmail] = useState("")
+     const [Password,setPassword] = useState("")
   return (
     <div className='bg-state-300 h-screen flex justify-center'>
       <div className='flex flex-col justify-center'>
@@ -12,7 +16,9 @@ export const Login = () => {
           <Heading label={'Sign in'} />
           <SubHeading label={'Enter your credentials to access your account'} />
 
-          <InputBox placeholder={'John@gmail.com'} label={'Email'} />
+          <InputBox onChange={(e =>{
+             setEmail(e.target.value)
+          })} placeholder={'John@gmail.com'} label={'Email'} />
           <InputBox placeholder={'123456'} label={'Password'} />
         </div>
         <div>
