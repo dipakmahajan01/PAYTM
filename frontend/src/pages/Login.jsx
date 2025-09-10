@@ -5,7 +5,7 @@ import { Button } from '../components/Button';
 import { Heading } from '../components/Heading';
 import { InputBox } from '../components/InputBox';
 import { SubHeading } from '../components/SubHeading';
-
+import axios from 'axios'
 export const Login = () => {
      const [Email,setEmail] = useState("")
      const [Password,setPassword] = useState("")
@@ -17,12 +17,21 @@ export const Login = () => {
           <SubHeading label={'Enter your credentials to access your account'} />
 
           <InputBox onChange={(e =>{
-             setEmail(e.target.value)
-          })} placeholder={'John@gmail.com'} label={'Email'} />
-          <InputBox placeholder={'123456'} label={'Password'} />
+            setEmail(e.target.value)
+           })} placeholder={'John@gmail.com'} label={'Email'} />
+          <InputBox onChange={(e=>{
+            setPassword(e.target.value)
+          })} placeholder={'123456'} label={'Password'} />
         </div>
         <div>
-          <Button label={'Sign In'} />
+          <Button onclick={
+            ()=>{
+              axios.post('http://localhost:3000/api/v1/user/signin',{
+                Email,
+                Password
+              })
+            }
+          } label={'Sign In'} />
         </div>
         <BottomWarning label={"Don't have an account?"}buttonText={"Sign Up"} to= {'/signup'} />
       </div>
